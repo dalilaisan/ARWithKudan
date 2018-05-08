@@ -72,7 +72,7 @@ public class MainActivity extends ARActivity {
 
         // Create a node to be used as the target.
         Log.d(TAG, "setup: 8");
-        ARImageNode targetNode = new ARImageNode("Arrow1.png");
+        ARImageNode targetNode = new ARImageNode("Arrow.png");
 
         // Add it to the Gyro Placement Manager's world so that it moves with the device's Gyroscope.
         Log.d(TAG, "setup: 9");
