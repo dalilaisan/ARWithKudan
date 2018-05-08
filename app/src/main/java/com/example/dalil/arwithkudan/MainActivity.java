@@ -72,7 +72,7 @@ public class MainActivity extends ARActivity {
 
         // Create a node to be used as the target.
         Log.d(TAG, "setup: 8");
-        ARImageNode targetNode = new ARImageNode("Cow Target.png");
+        ARImageNode targetNode = new ARImageNode("Arrow1.png");
 
         // Add it to the Gyro Placement Manager's world so that it moves with the device's Gyroscope.
         Log.d(TAG, "setup: 9");
@@ -80,8 +80,8 @@ public class MainActivity extends ARActivity {
 
         // Rotate and scale the node to ensure it is displayed correctly.
         Log.d(TAG, "setup: 10");
-        targetNode.rotateByDegrees(90.0f, 1.0f, 0.0f, 0.0f);
-        targetNode.rotateByDegrees(180.0f, 0.0f, 1.0f, 0.0f);
+        targetNode.rotateByDegrees(0.0f, 1.0f, 0.0f, 0.0f);
+        targetNode.rotateByDegrees(90.0f, 0.0f, 1.0f, 0.0f);
 
         targetNode.scaleByUniform(0.3f);
 
