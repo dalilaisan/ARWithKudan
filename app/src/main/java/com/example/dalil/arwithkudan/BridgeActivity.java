@@ -4,11 +4,14 @@ import android.os.Bundle;
 
 import eu.kudan.kudan.ARAPIKey;
 import eu.kudan.kudan.ARActivity;
+import eu.kudan.kudan.ARArbiTrack;
+import eu.kudan.kudan.ARGyroPlaceManager;
 import eu.kudan.kudan.ARImageNode;
 import eu.kudan.kudan.ARImageTrackable;
 import eu.kudan.kudan.ARImageTracker;
 
 public class BridgeActivity extends ARActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +44,50 @@ public class BridgeActivity extends ARActivity {
 
 
         // Initialise the image node with our image
-        ARImageNode imageNode = new ARImageNode("Kudan Cow.png");
+        ARImageNode imageNode = new ARImageNode("Arrow.png");
+
+        //imageNode.rotateByDegrees(0.0f, 1.0f, 0.0f, 0.0f);
+        //imageNode.rotateByDegrees(90.0f, 0.0f, 1.0f, 0.0f);
 
         // Add the image node as a child of the trackable's world
         imageTrackable.getWorld().addChild(imageNode);
+       // imageNode.setName("Cow");
+
+        /////////////////////////TRACK (at the end of setup)
+
+        // Initialise ArbiTrack.
+        ARArbiTrack arbiTrack = ARArbiTrack.getInstance();
+        arbiTrack.initialise();
+
+        //Add the activity as an ArbiTrack delegate
+
+      //  arbiManager.addListener(this);
+
+        // Initialise gyro placement.
+        ARGyroPlaceManager gyroPlaceManager = ARGyroPlaceManager.getInstance();
+        gyroPlaceManager.initialise();
+
+
+        /////ADDING THE TAFGET NODE
+
+        // Create a node to be used as the target.
+        ARImageNode targetNode = new ARImageNode("Cow Target.png");
+
+        // Add it to the Gyro Placement Manager's world so that it moves with the device's Gyroscope.
+        gyroPlaceManager.getWorld().addChild(targetNode);
+
+        // Rotate and scale the node to ensure it is displayed correctly.
+        targetNode.rotateByDegrees(90.0f, 1.0f, 0.0f, 0.0f);
+        targetNode.rotateByDegrees(180.0f, 0.0f, 1.0f, 0.0f);
+
+        targetNode.scaleByUniform(0.3f);
+
+        // Set the ArbiTracker's target node.
+        arbiTrack.setTargetNode(targetNode);
+
+
+
+
+
     }
 }
